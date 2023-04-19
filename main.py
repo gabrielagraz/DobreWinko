@@ -6,7 +6,7 @@ import pandas as pd
 class DobreWinkoApp:
     def __init__(self, master):
         self.master = master
-        master.title("Dobre winko")
+        master.title("Witaj w aplikacji Dobre Winko!")
         master.geometry("800x500")
 
         # Tworzenie widżetu Notebook
@@ -42,10 +42,8 @@ class DobreWinkoApp:
         self.table = ttk.Treeview(self.table_frame)
         self.table.pack(fill=tk.BOTH, expand=True)
 
-        # Pobieranie danych z pliku CSV i wstawienie ich do tabeli
-        self.data = pd.read_csv(
-            "winequality-white .csv",
-            sep=";")
+        # Pobieranie danych z pliku CSV wino białe i wstawienie ich do tabeli
+        self.data = pd.read_csv("winequality-white .csv", sep=";")
         self.table["columns"] = list(self.data.columns)
         self.table["show"] = "headings"
         for column in self.table["columns"]:
