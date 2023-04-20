@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 import pandas as pd
+from Charts import Charts
 
 
 class DobreWinkoApp:
@@ -60,13 +61,15 @@ class DobreWinkoApp:
     def show_page2(self):
         self.notebook.select(self.page2)
 
-    def show_table(self, event):
+    def show_table(self):
         if self.action_var.get() == "Pokaz dane":
             # Pokaż tabelkę
             self.table_frame.pack(fill=tk.BOTH, expand=True)
+        elif self.action_var.get() == "Wykresy"
         else:
             # Ukryj tabelkę
             self.table_frame.pack_forget()
+
 
 
 root = tk.Tk()
