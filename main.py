@@ -1,8 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 import pandas as pd
-from Charts import Charts
-
+from chartsView import ChartsView
 
 class DobreWinkoApp:
     def __init__(self, master):
@@ -55,21 +54,21 @@ class DobreWinkoApp:
         # Ukryj tabelkę na początku
         self.table_frame.pack_forget()
 
+    def show_table(self, event):
+        if self.action_var.get() == "Pokaz dane":
+            # Pokaż tabelkę
+            self.table_frame.pack(fill=tk.BOTH, expand=True)
+        elif self.action_var.get() == "Wykresy":
+            # Pokaż wykresy
+            chart = ChartsView(self.master)
+        else:
+            # Ukryj tabelkę
+            self.table_frame.pack_forget()
     def show_page1(self):
         self.notebook.select(self.page1)
 
     def show_page2(self):
         self.notebook.select(self.page2)
-
-    def show_table(self):
-        if self.action_var.get() == "Pokaz dane":
-            # Pokaż tabelkę
-            self.table_frame.pack(fill=tk.BOTH, expand=True)
-        elif self.action_var.get() == "Wykresy"
-        else:
-            # Ukryj tabelkę
-            self.table_frame.pack_forget()
-
 
 
 root = tk.Tk()
