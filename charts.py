@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 
 class Charts:
 
+
  def __init__(self, data_file):
   self.data_file = data_file
 
