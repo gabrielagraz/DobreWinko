@@ -1,12 +1,14 @@
 import tkinter as tk
 from tkinter import ttk
 import pandas as pd
+import self as self
+
 from chartsView import ChartsView
 
 class DobreWinkoApp:
     def __init__(self, master):
         self.master = master
-        master.title("Witaj w aplikacji Dobre Winko!")
+        master.title("Wino w liczbach")
         master.geometry("800x500")
 
         # Tworzenie widżetu Notebook
@@ -42,6 +44,23 @@ class DobreWinkoApp:
         self.table = ttk.Treeview(self.table_frame)
         self.table.pack(fill=tk.BOTH, expand=True)
 
+
+        #buttony na dole
+        button1 = tk.Button(root, text="Pokaz dane", font=('Arial', 12), command=self.show_table)
+        button1.pack(padx=10, pady=10, side=tk.LEFT)
+
+        button2 = tk.Button(root, text="Obliczanie miar statystycznych", font=('Arial', 12))
+        button2.pack(padx =10, side=tk.LEFT)
+
+        button3 = tk.Button(root, text="Wyznaczanie korelacji", font=('Arial', 12))
+        button3.pack(padx=10, side=tk.LEFT)
+
+        button4 = tk.Button(root, text="Ekstrakcja tablic", font=('Arial', 12))
+        button4.pack(padx=10, side=tk.LEFT)
+
+        button5 = tk.Button(root, text="Wykresy", font=('Arial', 12))
+        button5.pack(padx=10, side=tk.LEFT)
+
         # Pobieranie danych z pliku CSV wino białe i wstawienie ich do tabeli
         self.data = pd.read_csv("winequality-white .csv", sep=";")
         self.table["columns"] = list(self.data.columns)
@@ -74,3 +93,4 @@ class DobreWinkoApp:
 root = tk.Tk()
 app = DobreWinkoApp(root)
 root.mainloop()
+self.master.mainloop()
