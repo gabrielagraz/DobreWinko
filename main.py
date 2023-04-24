@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 import pandas as pd
-import self as self
+
 
 from chartsView import ChartsView
 
@@ -41,25 +41,21 @@ class DobreWinkoApp:
         # Ramka z tabelką
         self.table_frame = tk.Frame(self.page1)
         self.table_frame.pack(fill=tk.BOTH, expand=True)
-        self.table = ttk.Treeview(self.table_frame)
-        self.table.pack(fill=tk.BOTH, expand=True)
 
 
-        #buttony na dole
-        button1 = tk.Button(root, text="Pokaz dane", font=('Arial', 12), command=self.show_table)
-        button1.pack(padx=10, pady=10, side=tk.LEFT)
+        self.xscrollbar = tk.Scrollbar(self.table_frame, orient=tk.HORIZONTAL)
+        self.xscrollbar.pack(side=tk.BOTTOM, fill=tk.X)
+        self.yscrollbar = tk.Scrollbar(self.table_frame, orient=tk.VERTICAL)
+        self.yscrollbar.pack(side=tk.RIGHT, fill=tk.Y)
 
-        button2 = tk.Button(root, text="Obliczanie miar statystycznych", font=('Arial', 12))
-        button2.pack(padx =10, side=tk.LEFT)
+        # Utworzenie tabeli
+        self.table = ttk.Treeview(self.table_frame, yscrollcommand=self.yscrollbar.set,
+                                  xscrollcommand=self.xscrollbar.set)
+        self.table.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
 
-        button3 = tk.Button(root, text="Wyznaczanie korelacji", font=('Arial', 12))
-        button3.pack(padx=10, side=tk.LEFT)
+        self.xscrollbar.config(command=self.table.xview)
+        self.yscrollbar.config(command=self.table.yview)
 
-        button4 = tk.Button(root, text="Ekstrakcja tablic", font=('Arial', 12))
-        button4.pack(padx=10, side=tk.LEFT)
-
-        button5 = tk.Button(root, text="Wykresy", font=('Arial', 12))
-        button5.pack(padx=10, side=tk.LEFT)
 
         # Pobieranie danych z pliku CSV wino białe i wstawienie ich do tabeli
         self.data = pd.read_csv("winequality-white .csv", sep=";")
