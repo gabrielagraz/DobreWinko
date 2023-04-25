@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 import pandas as pd
-
+import self
 
 from chartsView import ChartsView
 
@@ -73,12 +73,22 @@ class DobreWinkoApp:
         if self.action_var.get() == "Pokaz dane":
             # Pokaż tabelkę
             self.table_frame.pack(fill=tk.BOTH, expand=True)
+            # Ukryj wykresy, jeśli są widoczne
+            if hasattr(self, "chart"):
+                self.chart.pack_forget()
         elif self.action_var.get() == "Wykresy":
             # Pokaż wykresy
-            chart = ChartsView(self.master)
-        else:
-            # Ukryj tabelkę
+            if not hasattr(self, "chart"):
+                self.chart = ChartsView(self.master)
+            self.chart.pack(fill=tk.BOTH, expand=True)
+            # Ukryj tabelkę, jeśli jest widoczna
             self.table_frame.pack_forget()
+        else:
+            # Ukryj tabelkę i wykresy
+            self.table_frame.pack_forget()
+            if hasattr(self, "chart"):
+                self.chart.pack_forget()
+
     def show_page1(self):
         self.notebook.select(self.page1)
 
