@@ -17,8 +17,6 @@ class ChartsView(tk.Frame):
         self.list3_var = tk.StringVar()
         self.list3_var.set("Select Option")
 
-        print("Wybierz parametry do utworzenia wykresów")
-
         self.list1 = ttk.OptionMenu(self, self.list1_var, *self.list1_options)
         self.list1.pack( padx=50, pady=10, side=tk.LEFT)
 
@@ -28,8 +26,8 @@ class ChartsView(tk.Frame):
         self.list3 = ttk.OptionMenu(self, self.list3_var, *self.list3_options)
         self.list3.pack(padx=50, pady=10, side=tk.LEFT)
 
-        buttonGeneruj = tk.Button(master, text="Generuj wykres", font=('Arial', 12))
-        buttonGeneruj.pack(padx=10, pady=10, side=tk.LEFT)
+        self.buttonGeneruj = tk.Button(master, text="Generuj wykres", font=('Arial', 12))
+        self.buttonGeneruj.pack(padx=10, pady=10, side=tk.LEFT)
 
         """self.submit_button = ttk.Button(self, text="Submit", command=self.submit_form)
         self.submit_button.pack(side=tk.LEFT, padx=10, pady=10)"""

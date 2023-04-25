@@ -1,53 +1,59 @@
 import tkinter as tk
 import pandas as pd
 
-# funkcja do wyznaczania korelacji
-def calculate_correlation():
-    # pobranie nazw wybranych cech z pola tekstowego
-    feature1 = entry1.get()
-    feature2 = entry2.get()
 
-    # wczytanie danych z pliku csv
-    df = pd.read_csv('winequality-white .csv', delimiter=';')
+class Correlations(tk.Frame):
+    def __init__(self, master):
+        tk.Frame.__init__(self, master)
+        self.master = master
+        self.master.title("Wyznaczanie korelacji pomiędzy dwoma atrybutami.")
+        self.master.geometry("800x500")
 
-    # wyznaczenie korelacji między cechami
-    correlation = df[feature1].corr(df[feature2])
+        # etykiety i pola tekstowe
+        self.label1 = tk.Label(self.master, text="Pierwsza cecha:", font=('Arial', 12))
+        self.label1.pack()
+        self.entry1 = tk.Entry(self.master)
+        self.entry1.pack()
 
-    # wyświetlenie wyniku w oknie tekstowym
-    result_text.delete(1.0, tk.END)
-    result_text.insert(tk.END, f'Korelacja między {feature1} a {feature2}: {correlation:.2f}')
+        self.label2 = tk.Label(self.master, text="Druga cecha:", font=('Arial', 12))
+        self.label2.pack()
+        self.entry2 = tk.Entry(self.master)
+        self.entry2.pack()
 
-# tworzenie okna
-window = tk.Tk()
-window.title("Wyznaczanie korelacji pomiędzy dwoma atrybutami.")
-window.geometry("800x500")
+        # przycisk do wyznaczania korelacji
+        self.button = tk.Button(self.master, text="Wyznacz korelację", font=('Arial', 13),
+                                command=self.calculate_correlation)
+        self.button.pack(pady=10)
 
-# etykiety i pola tekstowe
-label1 = tk.Label(window, text="Pierwsza cecha:", font=('Arial', 12))
-label1.pack()
-entry1 = tk.Entry(window)
-entry1.pack()
+        # okno tekstowe na wyniki
+        self.result_text = tk.Text(self.master, width=40, height=5)
+        self.result_text.pack()
 
-label2 = tk.Label(window, text="Druga cecha:", font=('Arial', 12))
-label2.pack()
-entry2 = tk.Entry(window)
-entry2.pack()
+        # Informacja o korelacji
+        self.label = tk.Label(self.master, text='Wartość korelacji może przyjmować wartości od -1 do 1, ')
+        self.label.pack()
+        self.label2 = tk.Label(self.master,
+                               text='gdzie wartość 1 oznacza pełną korelację dodatnią, -1 pełną korelację ujemną, a 0 brak korelacji.' \
+                                    ' Im bliżej wartości 1 lub -1, tym silniejsza jest korelacja.')
+        self.label2.pack()
 
-# przycisk do wyznaczania korelacji
-button = tk.Button(window, text="Wyznacz korelację",font=('Arial', 13), command=calculate_correlation)
-button.pack(pady=10)
+        self.pack(fill=tk.BOTH, expand=True)  # Dodajemy ramkę do okna głównego aplikacji
 
-# okno tekstowe na wyniki
-result_text = tk.Text(window, width=40, height=5)
-result_text.pack()
+    # funkcja do wyznaczania korelacji
+    def calculate_correlation(self):
+        # pobranie nazw wybranych cech z pola tekstowego
+        feature1 = self.entry1.get()
+        feature2 = self.entry2.get()
 
-#Informacja o korelacji
-label = tk.Label(window, text='Wartość korelacji może przyjmować wartości od -1 do 1, ' )
-label.pack()
-label2 = tk.Label(window, text='gdzie wartość 1 oznacza pełną korelację dodatnią, -1 pełną korelację ujemną, a 0 brak korelacji.' \
-          ' Im bliżej wartości 1 lub -1, tym silniejsza jest korelacja.')
-label2.pack()
+        # wczytanie danych z pliku csv
+        df = pd.read_csv('winequality-white .csv', delimiter=';')
 
-# pętla zdarzeń
-window.mainloop()
+        # wyznaczenie korelacji między cechami
+        correlation = df[feature1].corr(df[feature2])
+
+        # wyświetlenie wyniku w oknie tekstowym
+        self.result_text.delete(1.0, tk.END)
+        self.result_text.insert(tk.END, f'Korelacja między {feature1} a {feature2}: {correlation:.2f}')
+
+
 

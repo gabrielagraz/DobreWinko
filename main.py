@@ -71,23 +71,40 @@ class DobreWinkoApp:
 
     def show_table(self, event):
         if self.action_var.get() == "Pokaz dane":
+            # Usuń widżety poprzedniej opcji
+            if hasattr(self, "chart"):
+                self.chart.pack_forget()
+            if hasattr(self, "correlations"):
+                self.correlations.pack_forget()
             # Pokaż tabelkę
             self.table_frame.pack(fill=tk.BOTH, expand=True)
-            # Ukryj wykresy, jeśli są widoczne
-            if hasattr(self, "chart"):
-                self.chart.pack_forget()
         elif self.action_var.get() == "Wykresy":
+            # Usuń widżety poprzedniej opcji
+            if hasattr(self, "table_frame"):
+                self.table_frame.pack_forget()
+            if hasattr(self, "correlations"):
+                self.correlations.pack_forget()
             # Pokaż wykresy
-            if not hasattr(self, "chart"):
-                self.chart = ChartsView(self.master)
+            self.chart = ChartsView(self.master)
             self.chart.pack(fill=tk.BOTH, expand=True)
-            # Ukryj tabelkę, jeśli jest widoczna
-            self.table_frame.pack_forget()
-        else:
-            # Ukryj tabelkę i wykresy
-            self.table_frame.pack_forget()
+        elif self.action_var.get() == "Wyzanaczanie korelacji":
+            # Usuń widżety poprzedniej opcji
             if hasattr(self, "chart"):
                 self.chart.pack_forget()
+            if hasattr(self, "table_frame"):
+                self.table_frame.pack_forget()
+            # Pokaż widok z korelacjami
+            from correlations import Correlations
+            self.correlations = Correlations(self.master)
+            self.correlations.pack(fill=tk.BOTH, expand=True)
+        else:
+            # Usuń widżety poprzedniej opcji
+            if hasattr(self, "chart"):
+                self.chart.pack_forget()
+            if hasattr(self, "table_frame"):
+                self.table_frame.pack_forget()
+            if hasattr(self, "correlations"):
+                self.correlations.pack_forget()
 
     def show_page1(self):
         self.notebook.select(self.page1)
