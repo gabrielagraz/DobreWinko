@@ -97,6 +97,16 @@ class DobreWinkoApp:
             from correlations import Correlations
             self.correlations = Correlations(self.master)
             self.correlations.pack(fill=tk.BOTH, expand=True)
+        elif self.action_var.get() == "Obliczanie miar statystycznych":
+            # Usuń widżety poprzedniej opcji
+            if hasattr(self, "chart"):
+                self.chart.pack_forget()
+            if hasattr(self, "table_frame"):
+                self.table_frame.pack_forget()
+            # Pokaż widok z miarami
+            from measures import Measures
+            self.measures = Measures(self.master)
+            self.measures.pack(fill=tk.BOTH, expand=True)
         else:
             # Usuń widżety poprzedniej opcji
             if hasattr(self, "chart"):
