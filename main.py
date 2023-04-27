@@ -103,7 +103,7 @@ class DobreWinkoApp:
 
         elif self.action_var.get() == "Obliczanie miar statystycznych":
             # Usuń widżety poprzedniej opcji
-            if hasattr(self, "chart"):
+            if hasattr(self, "measures"):
                 self.chart.pack_forget()
             if hasattr(self, "table_frame"):
                 self.table_frame.pack_forget()
@@ -133,4 +133,4 @@ class DobreWinkoApp:
 root = tk.Tk()
 app = DobreWinkoApp(root)
 root.mainloop()
-self.master.mainloop()
+# self.master.mainloop()
