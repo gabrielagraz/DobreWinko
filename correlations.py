@@ -7,7 +7,7 @@ class Correlations(tk.Frame):
         tk.Frame.__init__(self, master)
         self.master = master
         self.master.title("Wyznaczanie korelacji pomiędzy dwoma atrybutami.")
-        self.master.geometry("800x500")
+        self.master.geometry("800x600")
 
         # etykiety i pola tekstowe
         self.label1 = tk.Label(self.master, text="Pierwsza cecha:", font=('Arial', 12))

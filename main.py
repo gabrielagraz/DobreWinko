@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 import pandas as pd
 import self
-
+from measures import Measures
 from chartsView import ChartsView
 
 class DobreWinkoApp:
@@ -19,8 +19,8 @@ class DobreWinkoApp:
         self.page1 = ttk.Frame(self.notebook)
         self.notebook.add(self.page1, text="Wino białe")
 
-        self.page2 = ttk.Frame(self.notebook)
-        self.notebook.add(self.page2, text="Wino czerwone")
+        # self.page2 = ttk.Frame(self.notebook)
+        # self.notebook.add(self.page2, text="Wino czerwone")
 
         # Dodanie suwaka do zakładki "Wino białe"
         self.action_frame = tk.Frame(self.master)
@@ -33,7 +33,7 @@ class DobreWinkoApp:
         self.action_var.set("Wybierz")
 
         self.action_options = ["Wybierz", "Pokaz dane", "Obliczanie miar statystycznych ", "Wyzanaczanie korelacji",
-                               "Ekstarkacja tablic", "Wykresy"]
+                               "Wykresy"]
         self.action_menu = ttk.OptionMenu(self.action_frame, self.action_var, *self.action_options,
                                           command=self.show_table)
         self.action_menu.pack(side=tk.LEFT, padx=10)
