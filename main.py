@@ -2,11 +2,12 @@ import tkinter as tk
 from tkinter import ttk
 import pandas as pd
 import self
-from measures import Measures
+
 from chartsView import ChartsView
 
 class DobreWinkoApp:
     def __init__(self, master):
+
         self.master = master
         master.title("Wino w liczbach")
         master.geometry("800x500")
@@ -78,6 +79,7 @@ class DobreWinkoApp:
                 self.correlations.pack_forget()
             # Pokaż tabelkę
             self.table_frame.pack(fill=tk.BOTH, expand=True)
+
         elif self.action_var.get() == "Wykresy":
             # Usuń widżety poprzedniej opcji
             if hasattr(self, "table_frame"):
@@ -87,6 +89,7 @@ class DobreWinkoApp:
             # Pokaż wykresy
             self.chart = ChartsView(self.master)
             self.chart.pack(fill=tk.BOTH, expand=True)
+
         elif self.action_var.get() == "Wyzanaczanie korelacji":
             # Usuń widżety poprzedniej opcji
             if hasattr(self, "chart"):
@@ -97,6 +100,7 @@ class DobreWinkoApp:
             from correlations import Correlations
             self.correlations = Correlations(self.master)
             self.correlations.pack(fill=tk.BOTH, expand=True)
+
         elif self.action_var.get() == "Obliczanie miar statystycznych":
             # Usuń widżety poprzedniej opcji
             if hasattr(self, "chart"):
@@ -107,6 +111,7 @@ class DobreWinkoApp:
             from measures import Measures
             self.measures = Measures(self.master)
             self.measures.pack(fill=tk.BOTH, expand=True)
+
         else:
             # Usuń widżety poprzedniej opcji
             if hasattr(self, "chart"):
@@ -115,6 +120,8 @@ class DobreWinkoApp:
                 self.table_frame.pack_forget()
             if hasattr(self, "correlations"):
                 self.correlations.pack_forget()
+            if hasattr(self, "measures"):
+                self.measures.pack_forget()
 
     def show_page1(self):
         self.notebook.select(self.page1)
