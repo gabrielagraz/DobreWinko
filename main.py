@@ -12,7 +12,7 @@ class DobreWinkoApp:
 
         self.master = master
         master.title("Wino w liczbach")
-        master.geometry("800x500")
+        master.geometry("825x500")
 
         self.notebook = ttk.Notebook(master)
         self.notebook.pack(fill=tk.BOTH, expand=True)
@@ -66,9 +66,7 @@ class DobreWinkoApp:
 
     def show_charts(self):
         self.hide_widgets()
-        chart_window = tk.Toplevel(self.master)
-        chart_window.title("Wykresy")
-        chart_window.geometry("800x600")
+        chart_window = None
         chart = ChartsView(chart_window)
         chart.pack(fill=tk.BOTH, expand=True)
 
