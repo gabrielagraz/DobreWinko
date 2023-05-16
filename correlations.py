@@ -1,4 +1,6 @@
 import tkinter as tk
+from tkinter.ttk import Combobox
+
 import pandas as pd
 
 
@@ -7,18 +9,26 @@ class Correlations(tk.Frame):
         tk.Frame.__init__(self, master)
         self.master = master
         self.master.title("Wyznaczanie korelacji pomiędzy dwoma atrybutami.")
-        self.master.geometry("800x600")
+        self.master.geometry("900x600")
 
         # etykiety i pola tekstowe
-        self.label1 = tk.Label(self.master, text="Pierwsza cecha:", font=('Arial', 12))
-        self.label1.pack()
-        self.entry1 = tk.Entry(self.master)
-        self.entry1.pack()
+        self.l1 = tk.Label(self.master, text='Wybierz współczynnik', font=('Arial', 12))
+        self.l1.pack()
+        self.combobox1 = Combobox(self.master,
+                                  values=['fixed acidity', 'volatile acidity', 'citric acid', 'residual sugar',
+                                          'chlorides',
+                                          'free sulfur dioxide', 'total sulfur dioxide', 'density', 'pH', 'sulphates',
+                                          'alcohol', 'quality'])
+        self.combobox1.pack()
 
-        self.label2 = tk.Label(self.master, text="Druga cecha:", font=('Arial', 12))
-        self.label2.pack()
-        self.entry2 = tk.Entry(self.master)
-        self.entry2.pack()
+        self.l2 = tk.Label(self.master, text='Wybierz współczynnik', font=('Arial', 12))
+        self.l2.pack()
+        self.combobox2 = Combobox(self.master,
+                                  values=['fixed acidity', 'volatile acidity', 'citric acid', 'residual sugar',
+                                          'chlorides',
+                                          'free sulfur dioxide', 'total sulfur dioxide', 'density', 'pH', 'sulphates',
+                                          'alcohol', 'quality'])
+        self.combobox2.pack()
 
         # przycisk do wyznaczania korelacji
         self.button = tk.Button(self.master, text="Wyznacz korelację", font=('Arial', 13),
@@ -42,8 +52,8 @@ class Correlations(tk.Frame):
     # funkcja do wyznaczania korelacji
     def calculate_correlation(self):
         # pobranie nazw wybranych cech z pola tekstowego
-        feature1 = self.entry1.get()
-        feature2 = self.entry2.get()
+        feature1 = self.combobox1.get()
+        feature2 = self.combobox2.get()
 
         # wczytanie danych z pliku csv
         df = pd.read_csv('winequality-white .csv', delimiter=';')
