@@ -40,11 +40,11 @@ class Correlations(tk.Frame):
         self.result_text.pack()
 
         # Informacja o korelacji
-        self.label = tk.Label(self.master, text='Wartość korelacji może przyjmować wartości od -1 do 1, ')
+        self.label = tk.Label(self.master, text='Wartość korelacji może przyjmować wartości od -1 do 1, ',wraplength=400)
         self.label.pack()
         self.label2 = tk.Label(self.master,
                                text='gdzie wartość 1 oznacza pełną korelację dodatnią, -1 pełną korelację ujemną, a 0 brak korelacji.' \
-                                    ' Im bliżej wartości 1 lub -1, tym silniejsza jest korelacja.')
+                                    ' Im bliżej wartości 1 lub -1, tym silniejsza jest korelacja.',wraplength=400)
         self.label2.pack()
 
         self.pack(fill=tk.BOTH, expand=True)  # Dodajemy ramkę do okna głównego aplikacji
