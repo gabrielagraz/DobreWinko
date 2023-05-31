@@ -11,8 +11,8 @@ class ChartGenerator:
             self.generate_line_chart()
         elif chart_type == "Wykres słupkowy":
             self.generate_bar_chart()
-        elif chart_type == "Wykres kołowy":
-            self.generate_pie_chart()
+        # elif chart_type == "Wykres kołowy":
+        #     self.generate_pie_chart()
         elif chart_type == "Wykres punktowy":
             self.generate_scatter_chart()
         elif chart_type == "Wykres pudełkowy":
@@ -36,12 +36,12 @@ class ChartGenerator:
             plt.title('Wykres słupkowy')
             plt.show()
 
-    def generate_pie_chart(self):
-        with open(self.data_file, 'r') as file:
-            data = pd.read_csv(file, delimiter=';')
-            plt.pie(data[self.list1_var.get()], labels=data[self.list2_var.get()])
-            plt.title('Wykres kołowy')
-            plt.show()
+    # def generate_pie_chart(self):
+    #     with open(self.data_file, 'r') as file:
+    #         data = pd.read_csv(file, delimiter=';')
+    #         plt.pie(data[self.list1_var.get()], labels=data[self.list2_var.get()])
+    #         plt.title('Wykres kołowy')
+    #         plt.show()
 
     def generate_scatter_chart(self):
         with open(self.data_file, 'r') as file:
