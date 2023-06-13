@@ -11,8 +11,6 @@ class ChartGenerator:
             self.generate_line_chart()
         elif chart_type == "Wykres słupkowy":
             self.generate_bar_chart()
-        elif chart_type == "Wykres kołowy":
-            self.generate_pie_chart()
         elif chart_type == "Wykres punktowy":
             self.generate_scatter_chart()
         elif chart_type == "Wykres pudełkowy":
@@ -61,6 +59,6 @@ class ChartGenerator:
 
     @staticmethod
     def get_chart_types():
-        return ["Wykres liniowy", "Wykres słupkowy", "Wykres kołowy", "Wykres punktowy", "Wykres pudełkowy"]
+        return ["Wykres liniowy", "Wykres słupkowy", "Wykres punktowy", "Wykres pudełkowy"]
 
 

@@ -17,7 +17,7 @@ class ChartsView(tk.Frame):
                               'chlorides',
                               'free sulfur dioxide', 'total sulfur dioxide', 'density', 'pH', 'sulphates',
                               'alcohol', 'quality']
-        self.list3_options = ["Wybierz parametry", "Wykres liniowy", "Wykres słupkowy", "Wykres kołowy",
+        self.list3_options = ["Wybierz parametry", "Wykres liniowy", "Wykres słupkowy",
                               "Wykres punktowy", "Wykres pudełkowy"]
 
         self.list1_var = tk.StringVar()
@@ -52,8 +52,6 @@ class ChartsView(tk.Frame):
             self.generate_line_chart()
         elif chart_type == "Wykres słupkowy":
             self.generate_bar_chart()
-        elif chart_type == "Wykres kołowy":
-            self.generate_pie_chart()
         elif chart_type == "Wykres punktowy":
             self.generate_scatter_chart()
         elif chart_type == "Wykres pudełkowy":
@@ -75,11 +73,7 @@ class ChartsView(tk.Frame):
         plt.title('Wykres słupkowy')
         plt.show()
 
-    def generate_pie_chart(self):
-        data = pd.read_csv('winequality-white .csv', delimiter=";")
-        plt.pie(data[self.list1_var.get()], labels=data[self.list2_var.get()])
-        plt.title('Wykres kołowy')
-        plt.show()
+
 
     def generate_scatter_chart(self):
         data = pd.read_csv('winequality-white .csv', delimiter=";")

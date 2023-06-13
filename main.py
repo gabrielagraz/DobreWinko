@@ -2,14 +2,12 @@ import tkinter as tk
 from tkinter import ttk
 import pandas as pd
 
-
 from correlations import Correlations
 from measures import Measures
 from chartsView import ChartsView
 
 class DobreWinkoApp:
     def __init__(self, master):
-
         self.master = master
         master.title("Wino w liczbach")
         master.geometry("825x500")
@@ -26,14 +24,14 @@ class DobreWinkoApp:
         self.action_label = tk.Label(self.action_frame, text="Wybierz akcję:", font=("Helvetica", 14))
         self.action_label.pack(side=tk.LEFT)
 
-        self.action_buttons = []
-        self.action_buttons.append(tk.Button(self.action_frame, text="Pokaz dane", command=self.show_table))
-        self.action_buttons.append(tk.Button(self.action_frame, text="Obliczanie miar statystycznych", command=self.show_measures))
-        self.action_buttons.append(tk.Button(self.action_frame, text="Wyznaczanie korelacji", command=self.show_correlations))
-        self.action_buttons.append(tk.Button(self.action_frame, text="Wykresy", command=self.show_charts))
+        self.action_var = tk.StringVar()
+        self.action_var.set("Pokaz dane")
 
-        for button in self.action_buttons:
-            button.pack(side=tk.LEFT, padx=10)
+        self.action_optionmenu = tk.OptionMenu(self.action_frame, self.action_var,
+                                               "Pokaz dane", "Obliczanie miar statystycznych",
+                                               "Wyznaczanie korelacji", "Wykresy",
+                                               command=self.handle_action_selection)
+        self.action_optionmenu.pack(side=tk.LEFT, padx=10)
 
         self.table_frame = tk.Frame(self.master)
         self.table_frame.pack(fill=tk.BOTH, expand=True)
@@ -59,6 +57,16 @@ class DobreWinkoApp:
             self.table.insert("", "end", values=list(row))
 
         self.table_frame.pack_forget()
+
+    def handle_action_selection(self, selection):
+        if selection == "Pokaz dane":
+            self.show_table()
+        elif selection == "Obliczanie miar statystycznych":
+            self.show_measures()
+        elif selection == "Wyznaczanie korelacji":
+            self.show_correlations()
+        elif selection == "Wykresy":
+            self.show_charts()
 
     def show_table(self):
         self.hide_widgets()
